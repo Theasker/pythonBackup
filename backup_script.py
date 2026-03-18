@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import os
 import subprocess
 from datetime import datetime, timedelta
@@ -103,25 +105,34 @@ class BackupManager:
             link_dest = None
 
         for remote_dir in server["directories"]:
-            local_dir = os.path.join(target_dir, remote_dir.lstrip('/'))
+            # Quitamos cualquier "/" final que pueda venir del config
+            remote_path = remote_dir.rstrip('/')
+
+            # Si es un archivo (.bashrc), local_dir debe ser la CARPETA que lo contiene.
+            # os.path.dirname("/home/user/.bashrc") -> "/home/user"
+            local_dir = os.path.join(target_dir, os.path.dirname(remote_path).lstrip('/'))
             os.makedirs(local_dir, exist_ok=True)
             
             print(f"  --> Sincronizando {remote_dir} por SSH...")
 
             command = [
-                "rsync", "-avz", "--numeric-ids", "--delete",
+                "rsync", "-avz", "--numeric-ids", "--delete", "--include=.*",
                 "-e", f"ssh -p {server['port']}"
             ]
+
+            # Combinamos: Genéricas + Específicas del servidor actual
+            # Usamos .get() para que si no hay 'extra_exclusions' no de error
+            current_exclusions = self.exclusions + server.get('extra_exclusions', [])
             # Aplicamos las exclusiones desde la variable de clase
-            for pattern in self.exclusions:
+            for pattern in current_exclusions:
                 command.append(f"--exclude={pattern}")
 
             if link_dest:
-                reference_path = os.path.join(link_dest, remote_dir.lstrip('/'))
+                reference_path = os.path.join(link_dest, remote_path.lstrip('/'))
                 if os.path.exists(reference_path):
                     command.append(f"--link-dest={reference_path}")
 
-            command.append(f"{server['user']}@{server['ip']}:{remote_dir}/")
+            command.append(f"{server['user']}@{server['ip']}:{remote_path}")
             command.append(local_dir)
 
             try:

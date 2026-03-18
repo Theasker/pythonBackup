@@ -1,6 +1,6 @@
 
 # Directorio raíz donde se guardarán todos los backups
-BACKUP_DESTINATION = "/mnt/datos1/scripts/python/backup/backups"
+BACKUP_DESTINATION = "/mnt/datos1/backup/backupVPS"
 
 ROTATION = {
     "daily": 7,
@@ -55,7 +55,10 @@ EXCLUSIONS = [
     ".vscode",             # Configuración VS Code
     ".idea",               # Configuración PyCharm/IntelliJ
     "*.swp",               # Archivos temporales de Vim/editores
-    ".env"                 # OPCIONAL: A veces se excluye por seguridad si el backup no está cifrado
+    ".env",                 # OPCIONAL: A veces se excluye por seguridad si el backup no está cifrado
+
+    # --- Directorios excluidos ---
+    "/home/ubuntu/docker/minecraftServer/data*",
 ]
 
 SERVERS = [
@@ -69,7 +72,8 @@ SERVERS = [
             "/etc",
             "/home/ubuntu/.ssh",
             "/home/ubuntu/docker",
-        ]
+        ],
+        "extra_exclusions": []
     },
     {
         "name": "vps_laflordeargon",
@@ -81,7 +85,8 @@ SERVERS = [
             "/etc",
             "/home/ubuntu/.ssh",
             "/home/ubuntu/docker",
-        ]
+        ],
+        "extra_exclusions": []
     },
     {
         "name": "vps_podereuropeo",
@@ -93,7 +98,8 @@ SERVERS = [
             "/etc",
             "/home/ubuntu/.ssh",
             "/home/ubuntu/docker",
-        ]
+        ],
+        "extra_exclusions": ["minecraftServer/data*"]
     },
     {
         "name": "vps_google",
@@ -105,7 +111,8 @@ SERVERS = [
             "/etc",
             "/home/theasker/.ssh",
             "/home/theasker/docker",
-        ]
+        ],
+        "extra_exclusions": []
     },
     {
         "name": "192.168.1.69",
@@ -123,6 +130,7 @@ SERVERS = [
             "/mnt/datos1/scripts/telegram",
             "/home/theasker/.bash_profile",
             "/home/theasker/.bashrc",
-            "/home/theasker/.zshrc",]
+            "/home/theasker/.zshrc",],
+        "extra_exclusions": []
     }
 ]
