@@ -44,9 +44,9 @@ EXCLUSIONS = [
 
     # --- Archivos Temporales y Logs ---
     "*.log",               # Todos los archivos de log
-    "tmp/*",               # Contenido de carpetas temporales
-    "temp/*",
-    "cache/*",             # Carpeta genérica de cache
+    "tmp/",
+    "temp/",
+    "cache/",
     ".cache",
 
     # --- Editores y Sistema ---
@@ -55,10 +55,21 @@ EXCLUSIONS = [
     ".vscode",             # Configuración VS Code
     ".idea",               # Configuración PyCharm/IntelliJ
     "*.swp",               # Archivos temporales de Vim/editores
-    ".env",                 # OPCIONAL: A veces se excluye por seguridad si el backup no está cifrado
+    ".devcontainer/",
 
     # --- Directorios excluidos ---
-    "/home/ubuntu/docker/minecraftServer/data*",
+    "minecraftServer/data*",
+    "localstack/aws",
+    "openclaw/*",
+    "webtop/data/.mozilla",
+    "webtop/data/.dbus",
+    "webtop/data/.XDG",
+	".hermes/hermes-agent",			# Hermes-agent
+	".hermes/lsp",					# Hermes-agent
+	".hermes/logs",					# Hermes-agent
+	".hermes/cache",				# Hermes-agent
+	".hermes/image_cache",			# Hermes-agent
+	".hermes/state-snapshots",		# Hermes-agent
 ]
 
 SERVERS = [
@@ -72,6 +83,11 @@ SERVERS = [
             "/etc",
             "/home/ubuntu/.ssh",
             "/home/ubuntu/docker",
+            "/home/ubuntu/.config",
+            "/home/ubuntu/src",
+            "/home/ubuntu/duckdns",
+            "/home/ubuntu/.bashrc",
+            "/home/ubuntu/.profile",
         ],
         "extra_exclusions": []
     },
@@ -85,52 +101,62 @@ SERVERS = [
             "/etc",
             "/home/ubuntu/.ssh",
             "/home/ubuntu/docker",
+            "/home/ubuntu/.config",
+            "/home/ubuntu/.bashrc",
+            "/home/ubuntu/.profile",
+            "/home/ubuntu/.cloudflared",
         ],
         "extra_exclusions": []
     },
-    {
-        "name": "vps_podereuropeo",
-        "ip": "129.151.225.48",
-        "port": 22,
-        "user": "root",
-        "directories": [
-            "/root/.ssh",
-            "/etc",
-            "/home/ubuntu/.ssh",
-            "/home/ubuntu/docker",
-        ],
-        "extra_exclusions": ["minecraftServer/data*"]
-    },
-    {
-        "name": "vps_google",
-        "ip": "35.225.26.104",
-        "port": 22,
-        "user": "root",
-        "directories": [
-            "/root/.ssh",
-            "/etc",
-            "/home/theasker/.ssh",
-            "/home/theasker/docker",
-        ],
-        "extra_exclusions": []
-    },
+    # {
+    #     "name": "vps_podereuropeo",
+    #     "ip": "129.151.225.48",
+    #     "port": 22,
+    #     "user": "root",
+    #     "directories": [
+    #         "/root/.ssh",
+    #         "/etc",
+    #         "/home/ubuntu/.ssh",
+    #         "/home/ubuntu/docker",
+    #         "/home/ubuntu/src",
+    #         "/home/ubuntu/duckdns",
+    #         "/home/ubuntu/.bashrc",
+    #         "/home/ubuntu/.profile",
+    #         "/home/ubuntu/.config",
+    #         "/home/ubuntu/docker/openclaw/docker-compose.yml",
+    #         "/home/ubuntu/.hermes",
+    #     ],
+    #     "extra_exclusions": ["minecraftServer/data*"]
+    # },
     {
         "name": "192.168.1.69",
         "ip": "192.168.1.69",
         "port": 22,
         "user": "root",
         "directories": [
-            "/root/.ssh", 
-            "/home/theasker/.ssh",
-            "/etc",
-            "/mnt/datos1/scripts/bash",
-            "/mnt/datos1/scripts/conky",
-            "/mnt/datos1/scripts/docker",
-            "/mnt/datos1/scripts/python",
-            "/mnt/datos1/scripts/telegram",
-            "/home/theasker/.bash_profile",
-            "/home/theasker/.bashrc",
-            "/home/theasker/.zshrc",],
+            	"/root/.ssh", 
+            	"/home/theasker/.ssh",
+            	"/etc",
+            	"/mnt/datos1/scripts/bash",
+            	"/mnt/datos1/scripts/conky",
+            	"/mnt/datos1/scripts/python",
+            	"/mnt/datos1/scripts/docker/Immich",
+				"/mnt/datos1/scripts/docker/iptvnator",
+				"/mnt/datos1/scripts/docker/qbitorrent-jellyfin",
+            	"/mnt/datos1/scripts/docker/honeygain.sh",
+            	"/mnt/datos1/scripts/telegram",
+            	"/home/theasker/.bash_profile",
+            	"/home/theasker/.bashrc",
+            	"/home/theasker/.zshrc",
+				"/home/theasker/.tmux.conf",
+				"/home/theasker/.config/xfce4",
+            	"/home/theasker/.config/Thunar",
+            	"/home/theasker/.config/conky",
+            	"/home/theasker/.config/rclone",
+            	"/home/theasker/.config/zellij",
+            	"/home/theasker/.config/user-dirs.dirs",
+            	"/home/theasker/.config/kitty",
+		],
         "extra_exclusions": []
     }
 ]

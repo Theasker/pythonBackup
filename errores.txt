@@ -1,0 +1,41 @@
+receiving incremental file list
+./
+
+sent 27 bytes  received 183 bytes  140,00 bytes/sec
+total size is 14.054  speedup is 66,92
+receiving incremental file list
+./
+
+sent 27 bytes  received 143 bytes  340,00 bytes/sec
+total size is 233  speedup is 1,37
+receiving incremental file list
+./
+
+sent 27 bytes  received 198 bytes  450,00 bytes/sec
+total size is 16.710  speedup is 74,27
+receiving incremental file list
+./
+
+sent 31 bytes  received 793 bytes  549,33 bytes/sec
+total size is 41.625  speedup is 50,52
+--- Iniciando proceso de Backup: 2026-01-04 ---
+
+[Servidor: vps_instancia]
+  - Ruta destino: /mnt/datos1/scripts/python/backup/backups/daily/vps_instancia/2026-01-04
+  - Ruta enlace duro: /mnt/datos1/scripts/python/backup/backups/daily/vps_instancia/2026-01-03
+  --> Copiando /root/.ssh...
+Command: ['rsync', '-avz', '--numeric-ids', '--delete', '-e', 'ssh -p 22', '--link-dest=/mnt/datos1/scripts/python/backup/backups/daily/vps_instancia/2026-01-03/root/.ssh', 'root@144.24.194.24:/root/.ssh/', '/mnt/datos1/scripts/python/backup/backups/daily/vps_instancia/2026-01-04/root/.ssh']
+      [OK] Finalizado.
+  --> Copiando /home/ubuntu/temp...
+Command: ['rsync', '-avz', '--numeric-ids', '--delete', '-e', 'ssh -p 22', '--link-dest=/mnt/datos1/scripts/python/backup/backups/daily/vps_instancia/2026-01-03/home/ubuntu/temp', 'root@144.24.194.24:/home/ubuntu/temp/', '/mnt/datos1/scripts/python/backup/backups/daily/vps_instancia/2026-01-04/home/ubuntu/temp']
+      [OK] Finalizado.
+
+[Servidor: servidor_local]
+  - Ruta destino: /mnt/datos1/scripts/python/backup/backups/daily/servidor_local/2026-01-04
+  - Ruta enlace duro: /mnt/datos1/scripts/python/backup/backups/daily/servidor_local/2026-01-03
+  --> Copiando /root/.ssh...
+Command: ['rsync', '-avz', '--numeric-ids', '--delete', '-e', 'ssh -p 22', '--link-dest=/mnt/datos1/scripts/python/backup/backups/daily/servidor_local/2026-01-03/root/.ssh', 'root@192.168.1.69:/root/.ssh/', '/mnt/datos1/scripts/python/backup/backups/daily/servidor_local/2026-01-04/root/.ssh']
+      [OK] Finalizado.
+  --> Copiando /home/theasker/.ssh...
+Command: ['rsync', '-avz', '--numeric-ids', '--delete', '-e', 'ssh -p 22', '--link-dest=/mnt/datos1/scripts/python/backup/backups/daily/servidor_local/2026-01-03/home/theasker/.ssh', 'root@192.168.1.69:/home/theasker/.ssh/', '/mnt/datos1/scripts/python/backup/backups/daily/servidor_local/2026-01-04/home/theasker/.ssh']
+      [OK] Finalizado.

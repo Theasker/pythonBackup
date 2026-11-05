@@ -1,0 +1,6 @@
+temp*
+tmp*
+*test*
+*.log
+__pycache__
+.atl/
